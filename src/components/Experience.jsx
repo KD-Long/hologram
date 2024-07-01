@@ -2,6 +2,9 @@ import React, { useRef } from 'react'
 import { Environment, OrbitControls, GizmoHelper, GizmoViewport } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
 
+import {useControls} from 'leva'
+import * as THREE from 'three'
+
 import Suzanne from './Suzanne.jsx'
 
 
@@ -11,19 +14,22 @@ const Experience = () => {
     const sphereRef = useRef()
     const torusRef = useRef()
 
+    const { bgColor } = useControls({
+        bgColor: { value: '#1d1f2a', label: 'Background Color' },
+      });
+
     useFrame((state, delta) => {
 
         const elapsedTime = state.clock.elapsedTime
 
         if (suzRef.current) {
-            console.log(suzRef)
             suzRef.current.rotation.x = - elapsedTime * 0.1
             suzRef.current.rotation.y = - elapsedTime * 0.2
         }
 
         sphereRef.current.rotation.x = - elapsedTime * 0.1
         sphereRef.current.rotation.y = elapsedTime * 0.2
-    
+
         torusRef.current.rotation.x = - elapsedTime * 0.1
         torusRef.current.rotation.y = elapsedTime * 0.2
 
@@ -35,7 +41,7 @@ const Experience = () => {
             <OrbitControls makeDefault />
 
             {/* Sets background */}
-            <color args={['#1d1f2a']} attach='background' />
+            <color args={[bgColor]} attach='background' />
 
             {/* Sets lighting env map */}
             {/* We probs dont need this because the model has lights baked and out shaders are probs mesh basic */}
@@ -51,7 +57,7 @@ const Experience = () => {
 
             <mesh position={[-3, 0, 0]} ref={sphereRef} >
                 <sphereGeometry />
-                <meshBasicMaterial color="blue" />
+                <meshBasicMaterial color={"#FF0000"} />
             </mesh>
 
             <Suzanne
