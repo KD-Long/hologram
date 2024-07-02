@@ -7,7 +7,6 @@ import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
 import { forwardRef } from 'react';
 
-
 // Note we are forwarding the reference from parent and capturing it here
 
 export default forwardRef(function Suzanne(props,ref) {
