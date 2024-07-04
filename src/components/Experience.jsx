@@ -9,8 +9,8 @@ import { shaderMaterial, useTexture } from '@react-three/drei';
 import { useControls } from 'leva'
 import * as THREE from 'three'
 
-import vertexShader from './shaders/vertexShader.glsl'
-import fragmentShader from './shaders/fragmentShader.glsl'
+import vertexShader from '../shaders/vertexShader.glsl'
+import fragmentShader from '../shaders/fragmentShader.glsl'
 import Suzanne from './Suzanne.jsx'
 import { useEffect } from 'react';
 
@@ -94,7 +94,6 @@ const Experience = () => {
             </GizmoHelper> */}
 
 
-
             <mesh position={[-3, 0, 0]} ref={sphereRef} >
                 <sphereGeometry />
                 <myShaderMaterial side={THREE.DoubleSide} transparent  />
@@ -115,7 +114,6 @@ const Experience = () => {
             <mesh ref={planeRef} position={[0, 2, 0]}>
                 <planeGeometry  />
                 <myShaderMaterial side={THREE.DoubleSide}  transparent />
-
             </mesh>
 
             {/* <Smoke /> */}

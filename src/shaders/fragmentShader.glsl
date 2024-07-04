@@ -19,11 +19,9 @@ void main() {
     // ^^^^^^^^ STRIPES
 
 
-
     //final color
     gl_FragColor = vec4(1.0,1.0,1.0, stripes);
     // gl_FragColor = vec4(1,0,1, 1);
-
 
 
     // this enables on runtime from renderer
