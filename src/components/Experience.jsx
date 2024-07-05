@@ -28,10 +28,7 @@ const Experience = () => {
     });
 
     const MyShaderMaterial = shaderMaterial({
-        // uPerlinTexture: {value: perlin},
         uTime: 0,
-        // uPerlinTexture: new THREE.Uniform(perlin),
-        // uPerlinTexture: perlin,
     },
         vertexShader,
         fragmentShader
