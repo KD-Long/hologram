@@ -39,7 +39,6 @@ npm run dev
 
 3. Open your web browser and navigate to http://localhost:3000 to access the project.
 
-
 # Notes to self
 
 Use leva version 0.9.34 (latest version 0.9.35 is fked, color picker errors out null) 
