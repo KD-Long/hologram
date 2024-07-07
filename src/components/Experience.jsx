@@ -93,7 +93,7 @@ const Experience = () => {
 
             <mesh position={[-3, 0, 0]} ref={sphereRef} >
                 <sphereGeometry />
-                <myShaderMaterial side={THREE.DoubleSide} transparent  />
+                <myShaderMaterial transparent  />
                 {/* <meshBasicMaterial color={"#FF0000"} /> */}
             </mesh>
 
@@ -104,7 +104,7 @@ const Experience = () => {
 
             <mesh position={[3, 0, 0]} ref={torusRef}>
                 <torusKnotGeometry args={[0.6, 0.25, 128, 32]} />
-                <myShaderMaterial side={THREE.DoubleSide} transparent />
+                <myShaderMaterial  transparent />
                 {/* <meshBasicMaterial color="orange" /> */}
             </mesh>
 

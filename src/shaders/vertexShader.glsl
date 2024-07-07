@@ -1,4 +1,6 @@
 uniform float uTime;
+
+varying vec3 vNormal;
 varying vec2 vUv;
 varying vec3 vMP;
 
@@ -13,6 +15,10 @@ void main() {
 
     // Varryings
     vUv = uv;
+    // using 0 makes sure we dont apply scale translate and scale to the normal
+    // we dont want the normal changing but we do want its position with the model to be updated
+    vec4 modelNormal = modelMatrix * vec4(normal,0.0);
+    vNormal = modelNormal.xyz;
     vMP = modelPosition.xyz;
 
 }

@@ -16,7 +16,7 @@ export default forwardRef(function Suzanne(props, ref) {
     <group  {...props} dispose={null}>
       <mesh ref={ref} geometry={nodes.Suzanne.geometry} material={nodes.Suzanne.material} >
 
-        <myShaderMaterial side={THREE.DoubleSide} transparent />
+        <myShaderMaterial transparent />
 
       </mesh>
     </group>
