@@ -36,12 +36,13 @@ void main() {
 
     // push brighter on the sides darker in middle
     fresnel = pow(fresnel,2.0);
+
     // ^^^^^^^ Fresnel effect
  
 
     float holographic = fresnel * stripes;
     // amplify fresnel effect compared to stripes
-    holographic+= fresnel*1.25;
+    holographic+= fresnel*1.2;
 
 
     //final color
