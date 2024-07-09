@@ -42,11 +42,9 @@ void main() {
 
     float holographic = fresnel * stripes;
     // amplify fresnel effect compared to stripes
-    holographic+= fresnel*1.2;
-
+    holographic+= fresnel*1.25;
 
     //final color
-    // gl_FragColor = vec4(1.0,1.0,1.0, stripes);
     gl_FragColor = vec4(1.0, 1.0, 1.0, holographic);
 
     // this enables on runtime from renderer
