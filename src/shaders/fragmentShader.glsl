@@ -1,4 +1,6 @@
 uniform float uTime;
+uniform vec3 uColor;
+
 varying vec3 vNormal;
 varying vec2 vUv; // this is the uv mapping from vertex shader (the coordinate of the pixel x-y)
 varying vec3 vMP; // model position passed vron vertex shader 
@@ -24,6 +26,12 @@ void main() {
     // normalise to mak sure
     vec3 normal =normalize(vNormal);
 
+    // check back facing and invert normal fixing effect
+    if(!gl_FrontFacing){
+        normal*=-1.0;
+    }
+    
+
     // force vector length to 1 with normalize
     vec3 viewDirection = normalize(vMP - cameraPosition);
 
@@ -40,12 +48,19 @@ void main() {
     // ^^^^^^^ Fresnel effect
  
 
+    // fall off to 0 on edge of holo
+    float falloff = smoothstep(0.8,0.0,fresnel);
+
     float holographic = fresnel * stripes;
     // amplify fresnel effect compared to stripes
     holographic+= fresnel*1.25;
+    holographic*= falloff;
+
+
+
 
     //final color
-    gl_FragColor = vec4(1.0, 1.0, 1.0, holographic);
+    gl_FragColor = vec4(uColor, holographic);
 
     // this enables on runtime from renderer
     #include <tonemapping_fragment>

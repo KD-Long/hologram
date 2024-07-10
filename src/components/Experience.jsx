@@ -23,12 +23,14 @@ const Experience = () => {
     const planeRef = useRef()
    
 
-    const { bgColor } = useControls({
+    const { bgColor,holoColor } = useControls({
         bgColor: { value: '#1d1f2a', label: 'Background Color' },
+        holoColor: { value: '#FF00FF', label: 'holo Color' },
     });
 
     const MyShaderMaterial = shaderMaterial({
         uTime: 0,
+        uColor: new THREE.Color(holoColor),
     },
         vertexShader,
         fragmentShader
@@ -49,8 +51,10 @@ const Experience = () => {
         if (suzRef.current) {
            
             suzRef.current.material.uniforms.uTime.value = elapsedTime
+            suzRef.current.material.uniforms.uColor.value= new THREE.Color(holoColor)
             suzRef.current.rotation.x = - elapsedTime * 0.1
             suzRef.current.rotation.y = - elapsedTime * 0.2
+
      
         }
 
@@ -66,6 +70,13 @@ const Experience = () => {
         sphereRef.current.material.uniforms.uTime.value = elapsedTime
         torusRef.current.material.uniforms.uTime.value = elapsedTime
         planeRef.current.material.uniforms.uTime.value = elapsedTime
+
+        // update color shader with color picker from useControls
+
+        sphereRef.current.material.uniforms.uColor.value= new THREE.Color(holoColor)
+        torusRef.current.material.uniforms.uColor.value= new THREE.Color(holoColor)
+        planeRef.current.material.uniforms.uColor.value= new THREE.Color(holoColor)
+
 
    
         // state.camera.lookAt(0, 0, 0);
@@ -93,7 +104,7 @@ const Experience = () => {
 
             <mesh position={[-3, 0, 0]} ref={sphereRef} >
                 <sphereGeometry />
-                <myShaderMaterial transparent  />
+                <myShaderMaterial transparent side={THREE.DoubleSide} depthWrite={false} blending={THREE.AdditiveBlending} />
                 {/* <meshBasicMaterial color={"#FF0000"} /> */}
             </mesh>
 
@@ -104,7 +115,7 @@ const Experience = () => {
 
             <mesh position={[3, 0, 0]} ref={torusRef}>
                 <torusKnotGeometry args={[0.6, 0.25, 128, 32]} />
-                <myShaderMaterial  transparent />
+                <myShaderMaterial side={THREE.DoubleSide} depthWrite={false} transparent blending={THREE.AdditiveBlending} />
                 {/* <meshBasicMaterial color="orange" /> */}
             </mesh>
 
