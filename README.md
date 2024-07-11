@@ -3,7 +3,7 @@
 This project showcases WebGL shaders implemented using React Three Fiber (R3F). 
 <br>
 
-![hologram-image](./public/logo.svg)
+![hologram-image](./public/holo.png)
 
 ## Tech
 

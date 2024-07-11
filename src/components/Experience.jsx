@@ -20,12 +20,10 @@ const Experience = () => {
     const suzRef = useRef()
     const sphereRef = useRef()
     const torusRef = useRef()
-    const planeRef = useRef()
-   
 
     const { bgColor,holoColor } = useControls({
         bgColor: { value: '#1d1f2a', label: 'Background Color' },
-        holoColor: { value: '#FF00FF', label: 'holo Color' },
+        holoColor: { value: '#0070ff', label: 'holo Color' },
     });
 
     const MyShaderMaterial = shaderMaterial({
@@ -42,8 +40,6 @@ const Experience = () => {
 
 
 
-
-
     useFrame((state, delta) => {
         
         const elapsedTime = state.clock.elapsedTime
@@ -55,7 +51,6 @@ const Experience = () => {
             suzRef.current.rotation.x = - elapsedTime * 0.1
             suzRef.current.rotation.y = - elapsedTime * 0.2
 
-     
         }
 
         sphereRef.current.rotation.x = - elapsedTime * 0.1
@@ -64,20 +59,15 @@ const Experience = () => {
         torusRef.current.rotation.x = - elapsedTime * 0.1
         torusRef.current.rotation.y = elapsedTime * 0.2
 
-
         // update utime
         
         sphereRef.current.material.uniforms.uTime.value = elapsedTime
         torusRef.current.material.uniforms.uTime.value = elapsedTime
-        planeRef.current.material.uniforms.uTime.value = elapsedTime
 
         // update color shader with color picker from useControls
 
         sphereRef.current.material.uniforms.uColor.value= new THREE.Color(holoColor)
         torusRef.current.material.uniforms.uColor.value= new THREE.Color(holoColor)
-        planeRef.current.material.uniforms.uColor.value= new THREE.Color(holoColor)
-
-
    
         // state.camera.lookAt(0, 0, 0);
     })
@@ -91,7 +81,6 @@ const Experience = () => {
             <color args={[bgColor]} attach='background' />
 
             {/* Sets lighting env map */}
-            {/* We probs dont need this because the model has lights baked and out shaders are probs mesh basic */}
             {/* <Environment
                 // background
                 preset="sunset"
@@ -118,13 +107,6 @@ const Experience = () => {
                 <myShaderMaterial side={THREE.DoubleSide} depthWrite={false} transparent blending={THREE.AdditiveBlending} />
                 {/* <meshBasicMaterial color="orange" /> */}
             </mesh>
-
-            <mesh ref={planeRef} position={[0, 2, 0]}>
-                <planeGeometry  />
-                <myShaderMaterial side={THREE.DoubleSide}  transparent />
-            </mesh>
-
-            {/* <Smoke /> */}
 
         </>
     )
